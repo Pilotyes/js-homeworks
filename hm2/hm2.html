@@ -1,0 +1,53 @@
+<head>
+
+</head>
+<body>
+    <script>
+        //3 задание
+       let a = 5;
+       let b = 7;
+        if ((a >= 0) && (b >= 0)) {
+            console.log(a - b);
+        } else if ((a < 0) && (b < 0)) {
+            console.log(a * b);
+        } else if (((a >= 0) && (b < 0)) || ((a < 0) && (b >=0))) {
+            console.log(a + b);
+        }
+
+        //4 задание
+        function sum(a, b) {
+            return a + b;
+        }
+
+        function sub(a, b) {
+            return a - b;
+        }
+
+        function mul(a, b) {
+            return a * b;
+        }
+
+        function div(a, b) {
+            return a / b;
+        }
+
+        //5 задание
+        function mathOperation(arg1, arg2, operation) {
+            switch (operation) {
+                case "sum":
+                    return sum(arg1, arg2);
+                case "sub":
+                    return sub(arg1, arg2);
+                case "mul":
+                    return mul(arg1, arg2);
+                case "div":
+                    return div(arg1, arg2);
+                default:
+                    alert("Unknown operation");
+            }
+        }
+
+        mathOperation(13, 6, "sub");
+    </script>
+    </script>
+</body>
