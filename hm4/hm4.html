@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Задание 1
+        {
+            const errMessage = " is wrong";
+            function NumToObj(number) {
+                if (Number.isInteger(number) != true) {
+                    console.log(number + errMessage);
+                    return Object;
+                }
+
+                let num = parseInt(number);
+                if ((num < 0) || (num > 999)) {
+                    console.log(number + errMessage);
+                    return Object;
+                }                
+
+                if (Math.floor(num) < num) {
+                    console.log(number + errMessage);
+                    return Object;
+                }
+
+                let units = num % 10;
+                num = (num  - units) / 10;
+                let tens = num % 10;
+                num = (num - tens) / 10;
+                let hundreds = num;
+                let obj = {
+                    units: units,
+                    tens: tens,
+                    hundreds: hundreds,
+                };
+                return obj;
+            }
+            console.log(NumToObj(847));
+        }
+
+        //1.1
+        //es5
+        {
+            function Product(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            Product.prototype.make25PercentDiscount = function() {
+                this.price *= 0.75;
+            }
+        }
+        //es6
+        {
+            class Product {
+                constructor(name, price) {
+                    this.name = name;
+                    this.price = price;
+                }
+
+                make25PercentDiscount() {
+                    this.price *= 0.75;
+                }
+            }
+        }
+        
+        //1.2
+        //es5
+        {
+            function Post(author, text, date) {
+                this.author = author;
+                this.text = text;
+                this.date = date;
+            }
+
+            Post.prototype.edit = function(text) {
+                this.text = text;   
+            }
+
+            function AttachedPost(author, text, date) {
+                let post = new Post(author, text, date);
+                this.author = post.author;
+                this.text = post.text;
+                this.date = post.date;
+                this.highlighted = false;
+            }
+
+            AttachedPost.prototype.edit = Post.prototype.edit;
+
+            AttachedPost.prototype.makeTextHighlighted = function() {
+                this.highlighted = true;
+            }
+        }
+        //es6
+        {
+            class Post {
+                constructor(author, text, date) {
+                    this.author = author;
+                    this.text = text;
+                    this.date = date;
+                }
+
+                edit(text) {
+                    this.text = text;
+                }
+            }
+
+            class AttachedPost {
+                constructor(author, text, date) {
+                    let post = new Post(author, text, date);
+                    this.author = post.author;
+                    this.text = post.text;
+                    this.date = post.date;
+                    this.highilighted = false;
+                    this.edit = Post.prototype.edit;
+                }
+
+
+                makeTextHighlighted() {
+                    this.highilighted = true;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
