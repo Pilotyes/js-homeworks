@@ -24,17 +24,17 @@ let app = {
      */
     insertPawns() {
         // 6. получаем все теги td из 7 линии игрового поля, туда мы будем вставлять белые пешки
-        let whitePawnsRow = document.querySelectorAll();
-        for (let i = 0; i < whitePawnsRow.length; i++) {
+        let whitePawnsRow = document.querySelectorAll("td");
+        for (let i = 48; i < 56; i++) {
             // 6.1 вставляем в текущий тег td белую пешку
-            whitePawnsRow[i].innerHTML = this.getFigure("rook", "2");
+            whitePawnsRow[i].innerHTML = this.getFigure("pawn", "whiteFigure");
         }
 
         // 6.2 получаем все теги td из 2 линии игрового поля, туда мы будем вставлять черные пешки
-        let blackPawnsRow = document.querySelectorAll();
-        for (let i = 0; i < blackPawnsRow.length; i++) {
+        let blackPawnsRow = document.querySelectorAll("td");
+        for (let i = 8; i < 16; i++) {
             // 6.3 вставляем в текущий тег td черную пешку
-            blackPawnsRow[i].innerHTML = this.getFigure("3", "4");
+            blackPawnsRow[i].innerHTML = this.getFigure("pawn", "blackFigure");
         }
     },
 
@@ -124,12 +124,12 @@ let app = {
             if (currentColorClass == "white") {
                 // 2.5 в переменную field пишем результат вызова функции this.generateField, которой передаем цвет ячейки игрового
                 // поля в виде строки, затем номер строки игровой доски в виде числа, последним аргументом передаем this.config.cols[i]
-                field = this.generateField(currentColorClass, i, this.config.cols[i]);
+                field = this.generateField(currentColorClass, rowNum, this.config.cols[i]);
                 // 2.6 присваиваем в currentColorClass строку "black"
                 currentColorClass = "black";
             } else {
                 // 2.7 делаем то же что и в п. 2.5, только первым параметром передаем "black"
-                field = this.generateField(currentColorClass, i , this.config.cols[i]);
+                field = this.generateField(currentColorClass, rowNum, this.config.cols[i]);
                 // 2.8 переменной currentColorClass присваиваем строку "white"
                 currentColorClass = "white";
             }
@@ -158,11 +158,11 @@ let app = {
      */
     insertRowsNumbers() {
         // 7. получаем все теги tr
-        let trs = document.querySelectorAll();
+        let trs = document.querySelectorAll("tr");
         // 7.1 перебираем эти теги в цикле
         for (let i = 0; i < trs.length; i++) {
             // 7.2 создаем тег td
-            let td = '<td></td>';
+            let td = document.createElement("td");
             // 7.3 в текущий тег td в innerText вставляем номер строки из this.config.rows
             td.innerText = this.config.rows[i];
             // 7.4 получившийся тег td вставляем в текущую строку (тег tr)
@@ -177,7 +177,7 @@ let app = {
      */
     insertColsChars() {
         // 8. создаем тег tr
-        let tr = '<tr></tr>';
+        let tr = document.createElement("tr");
         // 8.1 затем в innerHTML тега tr дописываем пустой тег td
         tr.innerHTML += '<td></td>';
         // 8.2 в цикле перебираем колонки из this.config.cols
